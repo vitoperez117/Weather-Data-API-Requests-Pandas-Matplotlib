@@ -61,4 +61,9 @@ try:
         print(json.dumps(weather, indent = 4, sort_keys = False))
         weather_pd.append(weather)
 except:
-    print("City does not exist or not in data set")
+    print("City does not exist or not in OWM")
+
+#Turn Weather List to CSV
+weather_csv = weather_pd.to_csv("Weather_by_city.csv", encoding = 'utf-8')
+weather_pd_csv = pd.read_csv(weather_csv)
+weather_pd_csv
