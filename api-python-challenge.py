@@ -52,9 +52,13 @@ cities_pd.head()
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
 weather_pd = []
 
-for city in cities:
-    url = f"{base_url}q={city}&APPID={api_key}"
-    weather = requests.get(url).json()
-    print(json.dumps(weather, indent = 4, sort_keys = False))
-    weather_pd.append(weather)
-    
+#Loop through Cities and Perform Get Request on OWM; include Exception
+
+try:
+    for city in cities:
+        url = f"{base_url}q={city}&APPID={api_key}"
+        weather = requests.get(url).json()
+        print(json.dumps(weather, indent = 4, sort_keys = False))
+        weather_pd.append(weather)
+except:
+    print("City does not exist or not in data set")
