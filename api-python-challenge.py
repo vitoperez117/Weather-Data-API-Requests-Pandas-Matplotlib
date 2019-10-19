@@ -48,22 +48,41 @@ cities_pd = pd.DataFrame(cities)
 cities_pd.describe()
 cities_pd.head()
 
-#Perform API Calls on Open Weather Maps
+#Set Base URL
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
-weather_pd = []
 
-#Loop through Cities and Perform Get Request on OWM; include Exception
+#Set Empty Lists for Data Frame
+city = []
+cloudiness = []
+country = []
+date = []
+humidity = []
+lat = []
+lng =[]
+max_temp = []
+wind_speed = []
 
+#Set Counter for Logging
+counter = 0
+set_counter = 0
+
+#Set Exception
 try:
     for city in cities:
         url = f"{base_url}q={city}&APPID={api_key}"
         weather = requests.get(url).json()
-        print(json.dumps(weather, indent = 4, sort_keys = False))
-        weather_pd.append(weather)
+        #print(json.dumps(weather, indent = 4, sort_keys = False))
+       
+        city_name = weather ["city"]
+        city.append(city_name)
+        
+        #while counter < 50:
+            #counter +=1
+        
+        
+        #print("Weather data from {city} requested: {counter}, set {set_counter}")
+        
+        counter = 0
+        set_counter +=1
 except:
     print("City does not exist or not in OWM")
-
-#Turn Weather List to CSV
-weather_csv = weather_pd.to_csv("Weather_by_city.csv", encoding = 'utf-8')
-weather_pd_csv = pd.read_csv(weather_csv)
-weather_pd_csv
