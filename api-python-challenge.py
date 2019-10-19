@@ -51,8 +51,6 @@ cities_pd.head()
 #Set Base URL
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-#Set Empty Lists for Data Frame
-city = []
 cloudiness = []
 country = []
 date = []
@@ -62,27 +60,32 @@ lng =[]
 max_temp = []
 wind_speed = []
 
-#Set Counter for Logging
 counter = 0
 set_counter = 0
 
-#Set Exception
 try:
     for city in cities:
         url = f"{base_url}q={city}&APPID={api_key}"
         weather = requests.get(url).json()
         #print(json.dumps(weather, indent = 4, sort_keys = False))
        
-        city_name = weather ["city"]
-        city.append(city_name)
+        cloudiness.append(weather['clouds']['all'])
         
+        humidity.append(weather['main']['humidity'])
+        lat.append(weather['coord']['lat'])
+        lng.append(weather['coord']['lng'])
+        max_temp.append(weather['main']['temp_max'])
+        wind_speed.append(weather['wind']['speed'])
+
         #while counter < 50:
             #counter +=1
         
         
-        #print("Weather data from {city} requested: {counter}, set {set_counter}")
+        print("Weather data from {city} requested: {counter}, set {set_counter}")
         
-        counter = 0
-        set_counter +=1
 except:
     print("City does not exist or not in OWM")
+    
+
+counter = 0
+set_counter +=1
