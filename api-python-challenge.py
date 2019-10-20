@@ -65,7 +65,7 @@ wind_speed = []
 counter = 0
 set_counter = 0
 
-#Iterate through cities and issue a get request per city
+
 for city in cities:
     url = f"{base_url}q={city}&APPID={api_key}"
     weather = requests.get(url).json()
@@ -82,3 +82,9 @@ for city in cities:
     lat.append(weather['coord']['lat'])
     lng.append(weather['coord']['lon'])
     
+    if counter <50:
+        counter +=1
+    elif counter >=50:
+        counter = 0
+        set_counter +=1
+    print(f"Weather data from {city.upper()} requested: city {counter} out of 49, from set {set_counter}")
