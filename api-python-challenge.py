@@ -89,15 +89,12 @@ for city in cities:
         set_counter +=1
     print(f"Weather data from {city.upper()} requested: city {counter} out of 49, from set {set_counter}")
 
-#Transform extracted values into data frame
-weather_pd = {"City":[cities],
-              "Cloudiness": [cloudiness],
-              "Date":[date],
-              "Humidity":[humidity],
-              "Lat":[lat],
-              "Lng":[lng],
-              "Max Temp":[max_temp],
-              "Wind Speed":[wind_speed]
-             }
-weather_df = pd.DataFrame(weather_pd).set_index("City")
-weather_df
+#Write extracted data into csv file
+ls_zip = zip(cities, cloudiness, country, date, humidity, max_temp, wind_speed, lat, lng)
+
+with open(city_weather_data.csv, mode = 'w', newline = '') as weather_data_file:
+    weather_writer = csv.writer(weather_data_file, delimiter = ',', quoting = csv.QUOTE_NONNUMERIC)
+    
+    data = ls_zip
+    
+    weather_data_file.writerows(data)
