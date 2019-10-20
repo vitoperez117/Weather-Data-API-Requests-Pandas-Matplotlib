@@ -88,3 +88,16 @@ for city in cities:
         counter = 0
         set_counter +=1
     print(f"Weather data from {city.upper()} requested: city {counter} out of 49, from set {set_counter}")
+
+#Transform extracted values into data frame
+weather_pd = {"City":[cities],
+              "Cloudiness": [cloudiness],
+              "Date":[date],
+              "Humidity":[humidity],
+              "Lat":[lat],
+              "Lng":[lng],
+              "Max Temp":[max_temp],
+              "Wind Speed":[wind_speed]
+             }
+weather_df = pd.DataFrame(weather_pd).set_index("City")
+weather_df
