@@ -111,7 +111,7 @@ plt.ylabel("Temperature (Kelvin)")
 plt.grid()
 
 plt.title(f"Latitude vs Temperature (Kelvin) ({weather_df['Date'][0]})")
-plt.show()
+plt.show(block = False)
 
 #Latitude vs Humidity (%) Scatter plot
 plt.scatter(lat, humidity, edgecolors = 'k')
@@ -123,7 +123,7 @@ plt.grid()
 
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
 plt.title(f"City Latitude vs Humidity (%) ({plot_date})")
-plt.show()
+plt.show(block = False)
 
 #Latitude vs Cloudiness (%) Scatter plot
 plt.scatter(lat, cloudiness, edgecolors = 'k')
@@ -135,7 +135,7 @@ plt.grid()
 
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
 plt.title(f"City Latitude vs Cloudiness (%) ({plot_date})")
-plt.show()
+plt.show(block = False)
 
 #Latitude vs Wind Speed (m/s) Scatter plot
 plt.scatter(lat, wind_speed, edgecolors = 'k')
@@ -147,4 +147,4 @@ plt.grid()
 
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
 plt.title(f"City Latitude vs Wind Speed (m/s) ({plot_date})")
-plt.show()
+plt.show(block = False)
