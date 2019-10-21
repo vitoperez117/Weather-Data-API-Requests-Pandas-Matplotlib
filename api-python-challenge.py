@@ -28,8 +28,8 @@ lat_lngs = []
 cities = []
 
 # Create a set of random lat and lng combinations
-lats = np.random.uniform(low=-90.000, high=90.000, size=1200)
-lngs = np.random.uniform(low=-180.000, high=180.000, size=1200)
+lats = np.random.uniform(low=-90.000, high=90.000, size=1500)
+lngs = np.random.uniform(low=-180.000, high=180.000, size=1500)
 lat_lngs = zip(lats, lngs)
 
 # Identify nearest city for each lat, lng combination
@@ -103,4 +103,10 @@ weather_df = weather_df.rename(columns = {0:"Cities",
                                           7: "Latitude",
                                           8: "Longitude"
                                          })
-weather_df.set_index("Cities")
+
+#Latitude vs Temperature (Kelvin) Plot
+plt.scatter(lat, max_temp, edgecolors = 'k')
+plt.xlabel("Latitude")
+plt.ylabel("Temperature (Kelvin)")
+plt.grid()
+plt.show()
