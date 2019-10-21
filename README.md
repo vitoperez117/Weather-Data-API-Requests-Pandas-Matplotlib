@@ -1,8 +1,14 @@
-# python-api-challenge
+# Python-API-Challenge
+
 ## Table of Contents
-1) Cities-Weather.csv 
-1) ScatterPlots
-* Temperature (F) vs. Latitude
-* Humidity (%) vs. Latitude
-* Cloudiness (%) vs. Latitude
-* Wind Speed (mph) vs. Latitude
+1) python-api-challenge.py
+ * api_keys.py
+1) WeatherPy.ipynb
+1) Cities_Weather.csv
+1) Observations.docx
+1) ScatterPlots (.png)
+
+  * Latitude vs. Temperature (F) 
+  * Latitude vs. Humidity (%) 
+  * Latitude vs. Cloudiness (%) 
+  * Latitude vs. Wind Speed (mph)
