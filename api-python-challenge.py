@@ -51,8 +51,6 @@ cities_pd.head()
 #Set Base URL
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-results = []
-
 cloudiness = []
 country = []
 date = []
@@ -63,31 +61,34 @@ max_temp = []
 wind_speed = []
 
 counter = 0
-set_counter = 0
+set_counter = 1
 
 
 for city in cities:
     url = f"{base_url}q={city}&units=imperial&APPID={api_key}"
-    weather = requests.get(url).json()
-    
-    #print(json.dumps(weather, indent = 4, sort_keys = False))
-    
-    #Append data to lists
-    cloudiness.append(weather['clouds']['all'])
-    country.append(weather['sys']['country'])
-    date.append(weather['dt'])
-    humidity.append(weather['main']['humidity'])
-    max_temp.append(weather['main']['temp_max'])
-    wind_speed.append(weather['wind']['speed'])
-    lat.append(weather['coord']['lat'])
-    lng.append(weather['coord']['lon'])
+    try:
+        weather = requests.get(url, timeout = 1).json()
+
+        cloudiness.append(weather['clouds']['all'])
+        country.append(weather['sys']['country'])
+        date.append(weather['dt'])
+        humidity.append(weather['main']['humidity'])
+        max_temp.append(weather['main']['temp_max'])
+        wind_speed.append(weather['wind']['speed'])
+        lat.append(weather['coord']['lat'])
+        lng.append(weather['coord']['lon'])
+    except:
+        print(f'City not found')
+
+    json.dumps(weather, indent = 4, sort_keys = False)
     
     if counter <50:
         counter +=1
     elif counter >=50:
         counter = 0
         set_counter +=1
-    print(f"Weather data from {city.upper()} requested: city {counter} out of 49, from set {set_counter}")
+    print(f"Request {counter} of 50 | Set {set_counter} | {city.upper()}")
+
 
 #Transform extracted data into dataframe
 ls_zip = zip(cities, cloudiness, country, date, humidity, max_temp, wind_speed, lat, lng)
