@@ -124,3 +124,27 @@ plt.grid()
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
 plt.title(f"City Latitude vs Humidity (%) ({plot_date})")
 plt.show()
+
+#Latitude vs Cloudiness (%) Scatter plot
+plt.scatter(lat, cloudiness, edgecolors = 'k')
+plt.xlabel("Latitude")
+plt.ylabel("Cloudiness")
+plt.xlim(-95,95)
+
+plt.grid()
+
+plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
+plt.title(f"City Latitude vs Cloudiness (%) ({plot_date})")
+plt.show()
+
+#Latitude vs Wind Speed (m/s) Scatter plot
+plt.scatter(lat, wind_speed, edgecolors = 'k')
+plt.xlabel("Latitude")
+plt.ylabel("Wind Speed (m/s)")
+plt.xlim(-95,95)
+
+plt.grid()
+
+plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
+plt.title(f"City Latitude vs Wind Speed (m/s) ({plot_date})")
+plt.show()
