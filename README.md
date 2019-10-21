@@ -1,4 +1,4 @@
-# Python-Api-Challenge
+# Python-API-Challenge
 
 ## Table of Contents
 1) python-api-challenge.py
