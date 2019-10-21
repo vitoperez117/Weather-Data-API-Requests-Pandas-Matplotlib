@@ -67,7 +67,7 @@ set_counter = 0
 
 
 for city in cities:
-    url = f"{base_url}q={city}&APPID={api_key}"
+    url = f"{base_url}q={city}&units=imperial&APPID={api_key}"
     weather = requests.get(url).json()
     
     #print(json.dumps(weather, indent = 4, sort_keys = False))
@@ -107,21 +107,23 @@ weather_df = weather_df.rename(columns = {0:"Cities",
 #Latitude vs Temperature (Kelvin) Scatter plot
 plt.scatter(lat, max_temp, edgecolors = 'k')
 plt.xlabel("Latitude")
-plt.ylabel("Temperature (Kelvin)")
+plt.ylabel("Temperature (Farenheit)")
+plt.xlim(-80,95)
+plt.ylim(-20,110)
 plt.grid()
 
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
-plt.title(f"Latitude vs Temperature (Kelvin) ({weather_df['Date'][0]})")
+plt.title(f"Latitude vs Temperature (Farenheit) ({weather_df['Date'][0]})")
 
-plt.savefig ("Latitude vs Temperature (Kelvin) Scatterplot.png")
+plt.savefig ("Latitude vs Temperature (Farenheit) Scatterplot.png")
 plt.show(block = False)
 
 #Latitude vs Humidity (%) Scatter plot
 plt.scatter(lat, humidity, edgecolors = 'k')
 plt.xlabel("Latitude")
 plt.ylabel("Humidity (%)")
-plt.xlim(-95,95)
-plt.ylim(65,102)
+plt.xlim(-80,95)
+plt.ylim(0,105)
 plt.grid()
 
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
@@ -134,7 +136,7 @@ plt.show(block = False)
 plt.scatter(lat, cloudiness, edgecolors = 'k')
 plt.xlabel("Latitude")
 plt.ylabel("Cloudiness")
-plt.xlim(-95,95)
+plt.xlim(-80,95)
 
 plt.grid()
 
@@ -147,13 +149,14 @@ plt.show(block = False)
 #Latitude vs Wind Speed (m/s) Scatter plot
 plt.scatter(lat, wind_speed, edgecolors = 'k')
 plt.xlabel("Latitude")
-plt.ylabel("Wind Speed (m/s)")
-plt.xlim(-95,95)
+plt.ylabel("Wind Speed (mph)")
+plt.xlim(-80,95)
+plt.ylim(-1,42)
 
 plt.grid()
 
 plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
-plt.title(f"City Latitude vs Wind Speed (m/s) ({plot_date})")
+plt.title(f"City Latitude vs Wind Speed (mph ({plot_date})")
 
 plt.savefig ("Latitude vs Wind Speed (meters per second) Scatterplot.png")
 plt.show(block = False)
