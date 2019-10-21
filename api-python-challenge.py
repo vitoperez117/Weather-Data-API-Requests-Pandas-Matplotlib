@@ -104,9 +104,23 @@ weather_df = weather_df.rename(columns = {0:"Cities",
                                           8: "Longitude"
                                          })
 
-#Latitude vs Temperature (Kelvin) Plot
+#Latitude vs Temperature (Kelvin) Scatter plot
 plt.scatter(lat, max_temp, edgecolors = 'k')
 plt.xlabel("Latitude")
 plt.ylabel("Temperature (Kelvin)")
 plt.grid()
+
+plt.title(f"Latitude vs Temperature (Kelvin) ({weather_df['Date'][0]})")
+plt.show()
+
+#Latitude vs Humidity (%) Scatter plot
+plt.scatter(lat, humidity, edgecolors = 'k')
+plt.xlabel("Latitude")
+plt.ylabel("Humidity (%)")
+plt.xlim(-95,95)
+plt.ylim(65,102)
+plt.grid()
+
+plot_date = datetime.fromtimestamp(weather_df['Date'][0]).date()
+plt.title(f"City Latitude vs Humidity (%) ({plot_date})")
 plt.show()
